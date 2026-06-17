@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F.R.I.E.N.D. TC-52 Mock App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="phone">
+
+    <header class="top-bar">
+      <div class="logo">King Soopers</div>
+      <div class="app-title">F.R.I.E.N.D.</div>
+    </header>
+
+    <button id="departmentToggle" class="department-toggle">
+      Toggle Department
+    </button>
+
+    <section class="circle-screen" id="circleScreen">
+      <h1 id="departmentName">Deli</h1>
+      <p id="compositeScore">Composite: 94%</p>
+      <p id="positiveResult">Freshness compliance up 8%</p>
+      <div class="mission-box">
+        <strong>Top Priority Guided Mission</strong>
+        <p id="topMission">
+          Complete hot holding temperature walk and coach new associate through Fresh Start task.
+        </p>
+      </div>
+    </section>
+
+    <section id="leaderOptions" class="leader-options hidden">
+      <button onclick="showLeaderView('department')">Department Leader</button>
+      <button onclick="showLeaderView('store')">Store Leader</button>
+    </section>
+
+    <section class="button-grid">
+      <button onclick="showAction('order')">Order</button>
+      <button onclick="showAction('temperature')">Temperature</button>
+      <button onclick="showAction('production')">Production</button>
+      <button onclick="showAction('replenishment')">Replenishment</button>
+      <button onclick="showAction('freshStart')">Fresh Start</button>
+      <button onclick="showLeaderOptions()">Leader</button>
+      <button onclick="showAction('training')">Training</button>
+      <button onclick="showAction('alerts')">Alerts</button>
+      <button onclick="showAction('mission')">Mission</button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
