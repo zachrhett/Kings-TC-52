@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>F.R.I.E.N.D. TC-52 Mock</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;background:#111827;font-family:Arial,Helvetica,sans-serif;color:white;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center}
+.device{width:min(100vw,430px);height:min(100vh,860px);background:#050b16;border:10px solid #111;border-radius:34px;padding:10px}
+.screen{height:100%;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,#003b73,#001b36 55%,#00101f);display:flex;flex-direction:column;position:relative}
+header{height:78px;background:linear-gradient(90deg,#004b93,#0065bd);border-bottom:4px solid #ffd200;padding:8px 12px;display:flex;align-items:center;gap:10px}
+.logo{background:white;color:#d71920;font-weight:900;border-radius:12px;padding:8px 9px;line-height:1;text-align:center;min-width:86px;box-shadow:inset 0 0 0 3px #ffd200}
+.logo span{display:block;color:#004b93;font-size:12px}
+.title{flex:1}
+.title h1{margin:0;font-size:21px}
+.title p{margin:2px 0 0;font-size:11px}
+.status{font-size:10px;background:rgba(255,255,255,.15);padding:5px 7px;border-radius:10px;text-align:right}
+.deptbar{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px;background:rgba(0,0,0,.18)}
+.deptbox{border:2px solid #ffd200;border-radius:16px;padding:8px 10px;background:rgba(255,255,255,.08)}
+.deptbox small{display:block;color:#ffd200;font-weight:700;font-size:10px}
+.deptbox strong{font-size:18px}
+button{border:none;border-radius:16px;color:white;font-weight:800;cursor:pointer;font-size:13px;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+button:active{transform:translateY(2px)}
+.toggle{background:#d71920;padding:0 13px}
+main{flex:1;display:grid;grid-template-rows:auto 1fr auto;gap:8px;padding:10px;min-height:0}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.metric{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:7px;text-align:center}
+.metric .num{font-size:20px;font-weight:900;color:#9cffb1}
+.metric .label{font-size:10px}
+.center{background:radial-gradient(circle,#0b69b7 0,#023e78 42%,#001d3a 72%);border:3px solid #ffd200;border-radius:50%;width:min(65vw,285px);height:min(65vw,285px);max-height:285px;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px}
+.center h2{margin:0;font-size:24px;color:#ffd200}
+.center p{font-size:13px;margin:8px 0 0;line-height:1.35}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.action{min-height:52px;background:linear-gradient(180deg,#0073cf,#004f91);border:1px solid rgba(255,255,255,.2)}
+.action.gold{background:linear-gradient(180deg,#ffd200,#c79300);color:#061225}
+.action.red{background:linear-gradient(180deg,#e3262e,#a91118)}
+.panel{position:absolute;inset:78px 10px 10px 10px;background:linear-gradient(180deg,#05294f,#001225);border:3px solid #ffd200;border-radius:22px;padding:14px;display:none;z-index:10;overflow:auto}
+.panel.show{display:block}
+.panel h2{margin:0 0 8px;color:#ffd200}
+.panel p{font-size:14px;line-height:1.35}
+.cards{display:grid;gap:8px}
+.card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:10px}
+.card strong{color:#9cffb1}
+.close{width:100%;min-height:46px;margin-top:10px;background:#d71920}
+.choice{width:100%;min-height:54px;margin:6px 0;background:#0065bd}
+.footer{font-size:10px;text-align:center;color:#cfe8ff;padding-bottom:2px}
+</style>
+</head>
+
+<body>
+<div class="device">
+<div class="screen">
+
+<header>
+<div class="logo">KING<br><span>SOOPERS</span></div>
+<div class="title">
+<h1>F.R.I.E.N.D.</h1>
+<p>Fresh Retail Intelligence • TC-52 Mock</p>
+</div>
+<div class="status">Store 129<br>Live Mock</div>
+</header>
+
+<section class="deptbar">
+<div class="deptbox">
+<small>CURRENT DEPARTMENT</small>
+<strong id="deptName">Deli / Fresh Prepared</strong>
+</div>
+<button class="toggle" onclick="toggleDept()">TOGGLE<br>DEPT</button>
+</section>
+
+<main>
+<section class="metrics">
+<div class="metric"><div class="num" id="metric1">98%</div><div class="label">Fresh Start</div></div>
+<div class="metric"><div class="num" id="metric2">96°</div><div class="label">Hot Hold</div></div>
+<div class="metric"><div class="num" id="metric3">+12%</div><div class="label">Sales Lift</div></div>
+</section>
+
+<section class="center">
+<h2 id="centerTitle">Mission Ready</h2>
+<p id="centerText">Tap any button below. Every path opens a guided mock screen with actions, metrics, or mission support.</p>
+</section>
+
+<section class="grid">
+<button class="action gold" onclick="openPanel('fresh')">Fresh<br>Start</button>
+<button class="action" onclick="openPanel('temp')">Temperature</button>
+<button class="action" onclick="openPanel('production')">Production</button>
+<button class="action" onclick="openPanel('replenish')">Replenish</button>
+<button class="action red" onclick="openPanel('order')">Order</button>
+<button class="action" onclick="openPanel('leader')">Leader</button>
+<button class="action" onclick="openPanel('training')">Training</button>
+<button class="action red" onclick="openPanel('alerts')">Alerts</button>
+<button class="action gold" onclick="openPanel('mission')">Mission</button>
+</section>
+
+<div class="footer">No dead buttons • Executive presentation prototype</div>
+</main>
+
+<section id="panel" class="panel">
+<h2 id="panelTitle"></h2>
+<div id="panelBody"></div>
+<button class="close" onclick="closePanel()">BACK TO DASHBOARD</button>
+</section>
+
+</div>
+</div>
+
+<script>
+const depts=[
+{name:"Deli / Fresh Prepared",m:["98%","96°","+12%"],title:"Mission Ready",text:"Fresh Start complete. Hot holding verified. Associate is ready for guided production."},
+{name:"Meat & Seafood",m:["97%","34°","+9%"],title:"Cold Chain Strong",text:"Cooler checks are green. Case standards are on track. Replenishment opportunity identified."},
+{name:"Produce",m:["99%","Green","+15%"],title:"Freshness Leading",text:"Wet rack, rotation, and priority displays are performing above target."},
+{name:"Bakery",m:["95%","On Time","+11%"],title:"Production On Track",text:"Bake schedule and packaging flow are aligned with demand forecast."},
+{name:"Grocery",m:["94%","86%","+8%"],title:"Shelf Recovery",text:"Top holes are prioritized. Replenishment mission is ready for the next associate."}
+];
+
+let dept=0;
+
+function toggleDept(){
+dept=(dept+1)%depts.length;
+const d=depts[dept];
+document.getElementById("deptName").textContent=d.name;
+document.getElementById("metric1").textContent=d.m[0];
+document.getElementById("metric2").textContent=d.m[1];
+document.getElementById("metric3").textContent=d.m[2];
+document.getElementById("centerTitle").textContent=d.title;
+document.getElementById("centerText").textContent=d.text;
+}
+
+const content={
+fresh:["Fresh Start",`
+<p>Guides the associate through today's safety, freshness, and department priorities.</p>
+<div class="cards">
+<div class="card"><strong>Step 1:</strong> Review current department conditions.</div>
+<div class="card"><strong>Step 2:</strong> Confirm food safety and freshness expectations.</div>
+<div class="card"><strong>Step 3:</strong> Assign first mission based on today’s needs.</div>
+</div>`],
+
+temp:["Temperature Guidance",`
+<p>Walks the associate through temperature checks step by step.</p>
+<div class="cards">
+<div class="card"><strong>Hot Holding:</strong> Verify, record, correct, and escalate if needed.</div>
+<div class="card"><strong>Cold Holding:</strong> Check case, cooler, and high-risk items.</div>
+<div class="card"><strong>Result:</strong> Current compliance trend is positive.</div>
+</div>`],
+
+production:["Production Plan",`
+<p>Uses demand signals to guide what to make, when to make it, and who should own it.</p>
+<div class="cards">
+<div class="card"><strong>Next Batch:</strong> Prioritize high-velocity items.</div>
+<div class="card"><strong>Waste Control:</strong> Reduce overproduction through smaller guided batches.</div>
+<div class="card"><strong>Customer Impact:</strong> Fresher product available during peak demand.</div>
+</div>`],
+
+replenish:["Replenishment Mission",`
+<p>Prioritizes shelves, cases, and displays with the highest customer and sales impact.</p>
+<div class="cards">
+<div class="card"><strong>Priority 1:</strong> Top-selling holes.</div>
+<div class="card"><strong>Priority 2:</strong> Ad items and customer-facing displays.</div>
+<div class="card"><strong>Priority 3:</strong> Backroom-to-shelf flow verification.</div>
+</div>`],
+
+order:["Order Support",`
+<p>Turns department conditions into order recommendations for leader review.</p>
+<div class="cards">
+<div class="card"><strong>Suggested Action:</strong> Increase order on fast movers.</div>
+<div class="card"><strong>Risk Check:</strong> Protect shrink by avoiding excess slow movers.</div>
+<div class="card"><strong>Leader Review:</strong> Final approval remains with the human leader.</div>
+</div>`],
+
+leader:["Leader Mode",`
+<p>Select leadership view:</p>
+<button class="choice" onclick="leaderChoice('Department Leader')">Department Leader</button>
+<button class="choice" onclick="leaderChoice('Store Leader')">Store Leader</button>
+<div id="leaderResult" class="card"><strong>Choose a role</strong> to see the correct executive dashboard.</div>`],
+
+training:["Training",`
+<p>Creates consistent coaching moments directly on the device.</p>
+<div class="cards">
+<div class="card"><strong>New Associate:</strong> Guided task learning.</div>
+<div class="card"><strong>Department Leader:</strong> Coaching prompts and verification.</div>
+<div class="card"><strong>Store Leader:</strong> Consistency across teams and shifts.</div>
+</div>`],
+
+alerts:["Alerts",`
+<p>Surfaces the most important issues before they become larger problems.</p>
+<div class="cards">
+<div class="card"><strong>Food Safety:</strong> No critical misses detected.</div>
+<div class="card"><strong>Staffing:</strong> Lunch coverage risk in 42 minutes.</div>
+<div class="card"><strong>Replenishment:</strong> Two high-impact holes need recovery.</div>
+</div>`],
+
+mission:["Mission Board",`
+<p>Assigns the next best action for the associate or leader.</p>
+<div class="cards">
+<div class="card"><strong>Associate Mission:</strong> Complete hot holding temperatures with guided prompts.</div>
+<div class="card"><strong>Leader Mission:</strong> Observe, support, and verify correct process.</div>
+<div class="card"><strong>Store Mission:</strong> Improve consistency, freshness, and execution.</div>
+</div>`]
+};
+
+function openPanel(type){
+document.getElementById("panelTitle").textContent=content[type][0];
+document.getElementById("panelBody").innerHTML=content[type][1];
+document.getElementById("panel").classList.add("show");
+}
+
+function closePanel(){
+document.getElementById("panel").classList.remove("show");
+}
+
+function leaderChoice(role){
+const msg=role==="Department Leader"
+? "<strong>Department Leader View:</strong> Shows department execution, associate coaching, temperatures, production, replenishment, and order recommendations."
+: "<strong>Store Leader View:</strong> Shows storewide department health, alerts, training completion, mission progress, and composite execution metrics.";
+document.getElementById("leaderResult").innerHTML=msg;
+}
+</script>
+
+</body>
+</html>
